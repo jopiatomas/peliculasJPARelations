@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name = "genero")
 public class Genero {
 
-    // tiene que ser generado así?
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

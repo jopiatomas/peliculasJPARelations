@@ -99,4 +99,44 @@ public class Pelicula {
     public void setDuracion(Integer duracion) {
         this.duracion = duracion;
     }
+
+    public Genero getGenero() {
+        return genero;
+    }
+
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
+
+    public List<Genero> getGenerosSecundarios() {
+        return generosSecundarios;
+    }
+
+    public void setGenerosSecundarios(List<Genero> generosSecundarios) {
+        this.generosSecundarios = generosSecundarios;
+    }
+
+    public List<Actor> getActores() {
+        return actores;
+    }
+
+    public void setActores(List<Actor> actores) {
+        this.actores = actores;
+    }
+
+    public Director getDirector() {
+        return director;
+    }
+
+    public void setDirector(Director director) {
+        this.director = director;
+    }
+
+    public List<Resena> getListaResenas() {
+        return listaResenas;
+    }
+
+    public void setListaResenas(List<Resena> listaResenas) {
+        this.listaResenas = listaResenas;
+    }
 }

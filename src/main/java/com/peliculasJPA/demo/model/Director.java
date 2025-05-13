@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotNull;
 @Table(name = "director")
 public class Director {
 
-    // tiene que ser generado así?
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -7,9 +7,9 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "resena")
-public class Resena {
+public class    Resena {
 
-    // tiene que ser generado así?
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,6 +35,14 @@ public class Resena {
         this.puntuacion = puntuacion;
     }
 
+    // para la relacion inversa
+    public Resena(Long id, String comentario, Integer puntuacion, Pelicula pelicula) {
+        this.id = id;
+        this.comentario = comentario;
+        this.puntuacion = puntuacion;
+        this.pelicula = pelicula;
+    }
+
     public Long getId() {
         return id;
     }
@@ -57,5 +65,13 @@ public class Resena {
 
     public void setPuntuacion(Integer puntuacion) {
         this.puntuacion = puntuacion;
+    }
+
+    public Pelicula getPelicula() {
+        return pelicula;
+    }
+
+    public void setPelicula(Pelicula pelicula) {
+        this.pelicula = pelicula;
     }
 }
