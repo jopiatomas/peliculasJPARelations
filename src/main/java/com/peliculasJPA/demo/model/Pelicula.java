@@ -15,7 +15,7 @@ public class Pelicula {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "titutlo", nullable = false, unique = true)
+    @Column(name = "titulo", nullable = false, unique = true)
     private String titulo;
 
     @Column(nullable = false)
@@ -48,7 +48,7 @@ public class Pelicula {
 
 
     @ManyToOne
-    @JoinColumn(name = "director_id", nullable = false)
+    @JoinColumn(name = "director_id")
     private Director director;
 
     @OneToMany(mappedBy = "pelicula", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -63,6 +63,25 @@ public class Pelicula {
         this.titulo = titulo;
         this.anioEstreno = anioEstreno;
         this.duracion = duracion;
+    }
+
+    public Pelicula(String titulo, Integer anioEstreno, Integer duracion) {
+        this.titulo = titulo;
+        this.anioEstreno = anioEstreno;
+        this.duracion = duracion;
+    }
+
+    // constructor con todos los atributos
+    public Pelicula(Long id, String titulo, Integer anioEstreno, Integer duracion, Genero genero, List<Genero> generosSecundarios, List<Actor> actores, Director director, List<Resena> listaResenas) {
+        this.id = id;
+        this.titulo = titulo;
+        this.anioEstreno = anioEstreno;
+        this.duracion = duracion;
+        this.genero = genero;
+        this.generosSecundarios = generosSecundarios;
+        this.actores = actores;
+        this.director = director;
+        this.listaResenas = listaResenas;
     }
 
     // hay que hacer el metodo para agregar generos secundarios

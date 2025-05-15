@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "resena")
-public class    Resena {
+public class Resena {
 
 
     @Id
@@ -23,7 +23,7 @@ public class    Resena {
     private Integer puntuacion;
 
     @ManyToOne
-    @JoinColumn(name = "pelicula_id", nullable = false)
+    @JoinColumn(name = "pelicula_id")
     private Pelicula pelicula;
 
     public Resena() {
@@ -31,6 +31,11 @@ public class    Resena {
 
     public Resena(Long id, String comentario, Integer puntuacion) {
         this.id = id;
+        this.comentario = comentario;
+        this.puntuacion = puntuacion;
+    }
+
+    public Resena(String comentario, Integer puntuacion) {
         this.comentario = comentario;
         this.puntuacion = puntuacion;
     }

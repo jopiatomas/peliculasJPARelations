@@ -1,0 +1,7 @@
+package com.peliculasJPA.demo.repository;
+
+import com.peliculasJPA.demo.model.Director;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DirectorRepository extends JpaRepository<Director, Long> {
+}

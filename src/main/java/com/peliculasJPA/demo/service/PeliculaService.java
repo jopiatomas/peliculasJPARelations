@@ -3,6 +3,7 @@ package com.peliculasJPA.demo.service;
 import com.peliculasJPA.demo.model.Pelicula;
 import com.peliculasJPA.demo.model.Resena;
 import com.peliculasJPA.demo.repository.PeliculaRepository;
+import com.peliculasJPA.demo.validations.PeliculasValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,18 +15,26 @@ public class PeliculaService {
 
     @Autowired
     private PeliculaRepository peliculaRepository;
-    // tengo que hacer el PeliculasValidator
 
+    @Autowired
+    private PeliculasValidator peliculasValidator;
 
     public Optional<Pelicula> guardarPelicula(Pelicula pelicula){
-        // agregar también el validator
-        // peliculaValidator.validar(pelicula) algo así
+        peliculasValidator.validarParaCreacion(pelicula);
 
         return Optional.of(peliculaRepository.save(pelicula));
     }
 
-    public List<Pelicula> findByDirector(String nombre){
-        return peliculaRepository.findByDirector(nombre);
+    public List<Pelicula> getAllPeliculas(){
+        return peliculaRepository.findAll();
+    }
+
+    public Optional<Pelicula> getById(Long id){
+        return peliculaRepository.findById(id);
+    }
+
+    public List<Pelicula> findByDirectorNombre(String nombre){
+        return peliculaRepository.findByDirectorNombre(nombre);
     }
 
     public void agregarResena(Long peliculaId, Resena resena){
@@ -39,6 +48,7 @@ public class PeliculaService {
         peliculaRepository.save(pelicula);
 
     }
+
 
 
 }
