@@ -17,9 +17,9 @@ public class ResenaController {
     @Autowired
     private ResenaService resenaService;
 
-    @PostMapping
-    public ResponseEntity<?> crearResena(@RequestBody Resena resena){
-        Optional<Resena> resenaAux = resenaService.saveResena(resena);
+    @PostMapping("/peliculas/{peliculaId}") // tiene que compartir nombre con el @PathVariable
+    public ResponseEntity<?> crearResena(@PathVariable Long peliculaId, @RequestBody Resena resena){
+        Optional<Resena> resenaAux = resenaService.saveResena(peliculaId, resena);
 
         return ResponseEntity.ok(resenaAux);
     }
@@ -29,6 +29,12 @@ public class ResenaController {
         return resenaService.getAllResenas();
     }
 
+    @DeleteMapping
+    public void borrarResenas(){
+        resenaService.eliminarTodas();
+    }
+
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminarResena(@PathVariable Long id) {
         resenaService.eliminarPorId(id);
@@ -36,12 +42,7 @@ public class ResenaController {
     }
 
 
-    // NO FUNCIONA NADA
-    @PutMapping("/{resenaId}/peliculas/{peliculaId}")
-    public ResponseEntity<?> agregarlePeliculaAResena(@PathVariable Long resenaId, @PathVariable Long peliculaId){
-        Resena actualizada = resenaService.vinculaResenaAPelicula(resenaId, peliculaId);
 
-        return ResponseEntity.ok(actualizada);
-    }
+
 
 }

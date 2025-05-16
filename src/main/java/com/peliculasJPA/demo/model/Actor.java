@@ -1,5 +1,6 @@
 package com.peliculasJPA.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -20,8 +21,11 @@ public class Actor {
     private String nacionalidad;
 
     @ManyToMany(mappedBy = "actores")
-    private List<Pelicula> actoresEnPelicula = new ArrayList<>();
+    @JsonIgnore // para evitar recursividad
+    private List<Pelicula> peliculas = new ArrayList<>();
 
+
+    // me salta este error org.hibernate.PersistentObjectException: detached entity passed to persist: com.peliculasJPA.demo.model.Actor
     public Actor() {
     }
 
@@ -55,4 +59,27 @@ public class Actor {
     public void setNacionalidad(String nacionalidad) {
         this.nacionalidad = nacionalidad;
     }
+
+
+    /* POSTMAN
+        {
+    "titulo":"Segunda prueba",
+    "anioEstreno": 2010,
+    "duracion": 123,
+    "genero": {"id": 1},
+    "generosSecundarios":
+    [   {"id": 2},
+        {"id": 3}
+
+    ],
+    "actores":[
+        {"id": 1},
+        {"id": 2}
+    ],
+
+    "director": {"id": 1}
+
+}
+
+     */
 }

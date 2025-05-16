@@ -1,7 +1,11 @@
 package com.peliculasJPA.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "director")
@@ -13,7 +17,10 @@ public class Director {
 
     @NotNull(message = "El nombre del director no puede ser nulo")
     private String nombre;
-
+/*
+    @OneToMany(mappedBy = "director")
+    @JsonManagedReference
+    private List<Pelicula> peliculas = new ArrayList<>();*/
 
     public Director(Long id, String nombre) {
         this.id = id;

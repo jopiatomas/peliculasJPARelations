@@ -1,5 +1,6 @@
 package com.peliculasJPA.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -24,6 +25,8 @@ public class Resena {
 
     @ManyToOne
     @JoinColumn(name = "pelicula_id")
+    @JsonBackReference
+    @NotNull
     private Pelicula pelicula;
 
     public Resena() {

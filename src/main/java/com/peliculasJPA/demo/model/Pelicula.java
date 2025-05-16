@@ -1,6 +1,8 @@
 package com.peliculasJPA.demo.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 
@@ -47,11 +49,13 @@ public class Pelicula {
     private List<Actor> actores = new ArrayList<>();
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "director_id")
+    @JsonBackReference
     private Director director;
 
     @OneToMany(mappedBy = "pelicula", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Resena> listaResenas = new ArrayList<>();
 
 

@@ -19,9 +19,11 @@ public class ResenaService {
     @Autowired
     private PeliculaRepository peliculaRepository;
 
-    public Optional<Resena> saveResena(Resena resena){
+    public Optional<Resena> saveResena(Long peliculaId, Resena resena){
+        Pelicula pelicula = peliculaRepository.findById(peliculaId)
+                .orElseThrow(() -> new RuntimeException("Pelicula no encontrada"));
 
-        /// TODO ES UNA SOLA LINEA
+        resena.setPelicula(pelicula);
         return Optional.of(resenaRepository.save(resena));
 
     }
@@ -35,6 +37,7 @@ public class ResenaService {
     }
 
     // agregar una resena ya creada a una pelicula ya creada NO FUNCIONA NADA
+    // al crear una reseñan ya tiene que tener una película, qué sentido tendría
     public Resena vinculaResenaAPelicula(Long resenaId, Long peliculaId){
 
         Resena resena = resenaRepository.findById(resenaId)
@@ -48,7 +51,8 @@ public class ResenaService {
         return resenaRepository.save(resena); // guardo los cambios
     }
 
-
-
+    public void eliminarTodas(){
+        resenaRepository.deleteAll();
+    }
 
 }

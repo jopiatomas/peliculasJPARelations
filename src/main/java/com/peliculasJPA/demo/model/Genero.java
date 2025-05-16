@@ -1,5 +1,7 @@
 package com.peliculasJPA.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -20,6 +22,7 @@ public class Genero {
     private String nombre;
 
     @ManyToMany(mappedBy = "generosSecundarios") // el nombre del array
+    @JsonIgnore // evita recursividad
     private List<Pelicula> peliculasConEsteGenero = new ArrayList<>();
 
     public Genero(Long id, String nombre) {
